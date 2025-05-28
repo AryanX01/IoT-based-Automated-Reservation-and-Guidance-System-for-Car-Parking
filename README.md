@@ -1,4 +1,5 @@
-Automated Reservation and Guidance System for Car Parking
+AUTOMATED RESERVATION AND GUIDANCE SYSTEM FOR CAR PARKING
+
 This project presents a smart IoT-based car parking system divided into two main modules: Parking Slot Area and Parking Gate. It aims to simplify and automate the parking experience by guiding vehicles to available slots and managing entry/exit based on real-time occupancy and reservations.
 
 Project Structure
