@@ -1,54 +1,81 @@
-AUTOMATED RESERVATION AND GUIDANCE SYSTEM FOR CAR PARKING
+# IoT-Based Automated Reservation and Guidance System for Car Parking 🚗📶
 
-This project presents a smart IoT-based car parking system divided into two main modules: Parking Slot Area and Parking Gate. It aims to simplify and automate the parking experience by guiding vehicles to available slots and managing entry/exit based on real-time occupancy and reservations.
+This project is a smart IoT-based car parking system developed using an ESP32 microcontroller. It allows users to **automatically detect vehicles**, **monitor parking slot availability**, **reserve slots**, and **guide vehicles** to park efficiently using sensors, LEDs, buzzers, a servo gate, and an LCD display.
 
-Project Structure
-1. Parking Slot Area
+## 🔧 Features
 
-Built using an ESP32 (30-pin) microcontroller connected to a breadboard at the center.
+- 🔄 **Automated Gate System**: Uses an ultrasonic sensor to detect vehicles at the entrance and operate a servo motor to open the barricade.
+- 📍 **Slot Monitoring**: Two parking slots monitored using ultrasonic sensors.
+- 🔔 **Parking Assist System**: Buzzers beep at varying intervals based on vehicle proximity to assist in parking.
+- 🟢🔴🔵 **RGB LED Indicators**: Shows slot status — Free (Green), Occupied (Red), Booked (Blue).
+- 💬 **LCD Display (16x2)**: Displays real-time messages like "Welcome", "Slot Booked", "All Booked", or "Stop".
+- 📦 **Slot Reservation Logic**: Slots can be pre-booked and their status is updated in real-time.
+- 🧠 **Efficient Resource Handling**: Timer-based buzzer beeping and gate control using millis().
 
-2 Ultrasonic sensors are placed on opposite sides to monitor the status of 2 individual parking slots.
+## 📚 What I Learned
 
-Each slot includes:
+- Interfacing multiple sensors and actuators with ESP32.
+- Using `millis()` for non-blocking delays and timing logic.
+- Real-time distance measurement using ultrasonic sensors.
+- PWM-based servo control and buzzer feedback systems.
+- RGB LED control for status indication.
+- I2C communication with LCD display.
+- Logical handling of booking, status updates, and vehicle detection.
+- Clean and modular coding practices using enums and functions.
 
-1 RGB LED to indicate status:
+## 🧰 Hardware Used
 
-Green: Slot is Free
+| Component             | Quantity |
+|----------------------|----------|
+| ESP32 Dev Board (30 pin) | 1 |
+| Ultrasonic Sensors (HC-SR04) | 3 |
+| RGB LEDs             | 3 |
+| Buzzer Modules       | 3 |
+| Servo Motor (Gate)   | 1 |
+| 16x2 LCD Display with I2C | 1 |
+| Jumper Wires         | Several |
+| Breadboard           | 2 small |
 
-Blue: Slot is Booked
+## 🔌 Circuit Overview
 
-Red: Slot is Occupied
+- **Slot Sensors**: Trig/Echo pins monitor slot distance.
+- **Gate Sensor**: Trig/Echo detects vehicle at gate.
+- **Servo Motor**: Connected to gate and opens when a vehicle is detected.
+- **RGB LEDs and Buzzers**: Mounted per slot and gate to indicate status and help with parking and with gate operations.
+- **LCD Display**: Shows system messages for user feedback.
 
-1 Buzzer for audio feedback during parking assistance.
+## 🚦 Slot Status Logic
 
-Slot status is monitored and updated in real-time.
+| Condition            | LED Color | Buzzer | LCD Message  |
+|---------------------|-----------|--------|--------------|
+| Free                | Green     | No     | "Free"       |
+| Booked              | Blue      | No     | "Slot Booked"|
+| Occupied            | Red       | Yes    | "Occupied"   |
+| All Booked          | -         | -      | "All Booked" |
+| Vehicle at Gate     | Green     | Beeps  | "Welcome"    |
 
-2. Parking Gate Module
+## 🛠️ How to Set Up
 
-Includes:
+1. Connect all components as per the circuit diagram.
+2. Flash the provided `.ino` file to the ESP32 using Arduino IDE.
+3. Power the ESP32 and observe the behavior.
+4. Modify the `slot1Booked` and `slot2Booked` flags to simulate online bookings.
 
-1 Ultrasonic sensor to detect incoming vehicles.
+## 🔮 Future Enhancements
 
-1 RGB LED to indicate gate status.
+- 🔗 **Website Integration**: Add web-based interface for booking and monitoring.
+- ☁️ **Cloud Storage**: Log data to Firebase or Thingspeak.
+- 📱 **Mobile App**: Real-time slot booking and navigation.
+- 🎯 **More Slots**: Scale to 4–8 slots with dynamic allocation.
 
-1 Buzzer for alerts.
+## 📷 Screenshots / Demo
 
-1 Servo motor acting as a barricade.
+[Images](https://github.com/AryanX01/IoT-based-Automated-Reservation-and-Guidance-System-for-Car-Parking/tree/main/Images)
 
-1 I2C 16x2 LCD Display showing live status of both parking slots.
+## 📄 License
 
-The gate logic ensures smooth entry when a slot is available. The servo opens/closes automatically, and the LCD guides the user with real-time updates such as "All slots booked", "Welcome", etc.
+This project is open-source and available under the MIT License.
 
-Features
-Real-time monitoring of slot availability.
+---
 
-Visual (RGB LED) and audio (buzzer) feedback for parking assistance.
-
-Servo-based automated gate access.
-
-LCD-based dynamic status updates.
-
-Efficient use of ESP32 GPIOs and peripherals.
-
-Modular hardware layout for clear demonstration.
-
+Made with ❤️ using ESP32, sensors, and code.
